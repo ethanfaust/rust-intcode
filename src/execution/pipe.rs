@@ -26,9 +26,9 @@ impl Pipe {
     }
 
     pub fn can_read(&self) -> bool {
-		if self.data.len() == 0 {
-			return false;
-		}
+        if self.data.len() == 0 {
+            return false;
+        }
         return self.read_pos <= self.data.len() - 1;
     }
 
@@ -48,24 +48,24 @@ mod tests {
 
     #[test]
     fn test_basics() {
-		let mut p: Pipe = Pipe::new();
-		assert_eq!(false, p.can_read());
-		p.write(1);
-		assert_eq!(true, p.can_read());
-		let val = p.read();
-		assert_eq!(1, val);
-	}
+        let mut p: Pipe = Pipe::new();
+        assert_eq!(false, p.can_read());
+        p.write(1);
+        assert_eq!(true, p.can_read());
+        let val = p.read();
+        assert_eq!(1, val);
+    }
 
-	#[test]
-	fn test_buildup() {
-		let mut p: Pipe = Pipe::new();
-		p.write(5);
-		p.write(4);
-		p.write(3);
-		assert_eq!(true, p.can_read());
-		assert_eq!(5, p.read());
-		assert_eq!(4, p.read());
-		assert_eq!(3, p.read());
-		assert_eq!(false, p.can_read());
-	}
+    #[test]
+    fn test_buildup() {
+        let mut p: Pipe = Pipe::new();
+        p.write(5);
+        p.write(4);
+        p.write(3);
+        assert_eq!(true, p.can_read());
+        assert_eq!(5, p.read());
+        assert_eq!(4, p.read());
+        assert_eq!(3, p.read());
+        assert_eq!(false, p.can_read());
+    }
 }
